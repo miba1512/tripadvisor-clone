@@ -1,0 +1,614 @@
+/* ==========================================================================
+   Trip Advisor Clone - style.css
+   - Responsive layout
+   - Hover effects & animations for categories
+   - Accessible focus states
+   - Section spacing, cards, grids, and footer
+   ========================================================================== */
+
+/* ---------- Reset & base ---------- */
+:root{
+  --bg: #f6f6f7;
+  --card: #fff;
+  --muted: #6b6b6b;
+  --accent: #00a67e; /* Trip-like green */
+  --accent-dark: #008063;
+  --accent-2: #0077cc;
+  --glass: rgba(255,255,255,0.7);
+  --shadow-1: 0 6px 20px rgba(22,22,22,0.06);
+  --shadow-2: 0 12px 30px rgba(22,22,22,0.08);
+  --radius: 12px;
+  --transition: 300ms cubic-bezier(.2,.9,.3,1);
+  --max-width: 1200px;
+  --container-gap: 24px;
+  --font-sans: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after{
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,body{
+  height:100%;
+}
+
+body{
+  font-family: var(--font-sans);
+  background: linear-gradient(180deg, #fafafb 0%, var(--bg) 100%);
+  color: #222;
+  line-height: 1.45;
+  margin:0;
+  -webkit-font-smoothing:antialiased;
+  font-size:16px;
+}
+
+/* ---------- Utility layout ---------- */
+.container{
+  width: min(100%, calc(var(--max-width) - 60px));
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+h1, h2, h3, h4, p{
+  margin: 0;
+}
+
+/* ---------- Header ---------- */
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 12px;
+  padding: 18px 24px;
+  background: white;
+  box-shadow: var(--shadow-1);
+  position: sticky;
+  top:0;
+  z-index: 60;
+}
+
+.header img.header__img1{
+  height: 36px;
+  width: auto;
+  object-fit:contain;
+  display:block;
+}
+
+.header img.header__img2{
+  height: 28px;
+  opacity: 0.9;
+  margin-left: 8px;
+}
+
+/* left nav labels */
+.header__1{
+  display:flex;
+  gap: 18px;
+  align-items:center;
+  margin-left: 24px;
+}
+.header__1 h3{
+  font-weight:600;
+  color:#222;
+  cursor:pointer;
+  padding: 8px 6px;
+  border-radius: 8px;
+  transition: var(--transition);
+  font-size: 15px;
+}
+.header__1 h3:hover,
+.header__1 h3:focus{
+  background: rgba(0,0,0,0.03);
+  transform: translateY(-2px);
+  color: var(--accent-dark);
+  outline: none;
+}
+
+/* right side currency / sign in */
+.header__2{
+  display:flex;
+  gap: 12px;
+  align-items:center;
+  color:var(--muted);
+}
+.header__2 .sing{
+  background: linear-gradient(180deg,#ffffff,#f6f9f7);
+  padding: 8px 14px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-1);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.header__2 .sing h3{
+  font-weight: 600;
+  color:#111;
+  font-size: 14px;
+  margin:0;
+}
+.header__2 .sing:hover{
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-2);
+}
+
+/* ---------- Hero "Where to?" ---------- */
+.where{
+  padding: 48px 24px 10px;
+  text-align: left;
+}
+.where h1{
+  font-size: 44px;
+  letter-spacing: -0.6px;
+  color:#111;
+  margin-left: 24px;
+}
+
+/* ---------- Menu + Search ---------- */
+.wher__down{
+  display:flex;
+  gap: 24px;
+  align-items:flex-start;
+  padding: 8px 24px 28px;
+  width: min(100%, var(--max-width));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* categories menu on left */
+.menu{
+  display:flex;
+  gap:12px;
+  align-items:center;
+  flex-wrap:wrap;
+  min-width:260px;
+}
+.menu h3{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background: var(--card);
+  padding:10px 12px;
+  border-radius: 10px;
+  box-shadow: var(--shadow-1);
+  cursor:pointer;
+  transition: var(--transition);
+  font-size:14px;
+}
+.menu h3 img.icon{
+  width:18px;
+  height:18px;
+  object-fit:contain;
+}
+.menu h3:hover{
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-2);
+  color: var(--accent);
+}
+
+/* search input */
+.input{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-left:auto;
+}
+.input input[type="text"]{
+  padding: 12px 14px;
+  width: 360px;
+  max-width: 60vw;
+  border-radius: 10px;
+  border: 1px solid #e7e7e7;
+  background: white;
+  box-shadow: inset 0 1px 0 rgba(0,0,0,0.02);
+  font-size: 15px;
+  transition: box-shadow 220ms ease, transform 220ms ease;
+}
+.input input[type="text"]:focus{
+  outline: none;
+  box-shadow: 0 6px 18px rgba(0,166,126,0.08);
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+.input button{
+  padding: 12px 18px;
+  background: linear-gradient(180deg,var(--accent),var(--accent-dark));
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 0 8px 30px rgba(0,118,86,0.12);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+.input button:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 16px 40px rgba(0,118,86,0.16);
+}
+
+/* ---------- Large hero gateway image ---------- */
+.gatway{
+  position: relative;
+  margin: 28px auto;
+  width: min(100%, var(--max-width));
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-2);
+  background: linear-gradient(180deg, #eceff1, #ffffff);
+}
+.gatway__img{
+  width:100%;
+  height: 340px;
+  object-fit: cover;
+  display:block;
+  filter: saturate(1.02) contrast(1.02);
+  transition: transform var(--transition);
+}
+.gatway:hover .gatway__img{
+  transform: scale(1.02);
+}
+.sale-img__offer{
+  position:absolute;
+  left: 36px;
+  bottom: 36px;
+  color: #fff;
+  text-shadow: 0 6px 20px rgba(0,0,0,0.45);
+  max-width: 520px;
+}
+.sale-img__offer h1{
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+.sale-img__offer h3{
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+.sale-img__offer button{
+  padding: 12px 18px;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+/* ---------- Section common styles ---------- */
+.restaurants{
+  padding: 28px 0;
+}
+.section-title{
+  font-size: 26px;
+  margin-bottom: 8px;
+  color: #111;
+}
+.subheading{
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+/* ---------- Categories grid ---------- */
+.categories{
+  display:grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  align-items:stretch;
+}
+
+/* Each category card */
+.category{
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+  transition: transform var(--transition), box-shadow var(--transition);
+  display:flex;
+  flex-direction: column;
+  cursor: pointer;
+  min-height: 220px;
+  position: relative;
+}
+.category img{
+  width:100%;
+  height: 140px;
+  object-fit: cover;
+  display:block;
+  transition: transform var(--transition), filter var(--transition);
+}
+.category h3{
+  padding: 12px 14px 6px;
+  font-size: 16px;
+  color:#111;
+  line-height:1.2;
+}
+.category p{
+  padding: 0 14px 12px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Hover / focus interactions */
+.category:hover,
+.category:focus-within{
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-2);
+}
+.category:hover img{
+  transform: scale(1.05) translateY(-3px);
+  filter: contrast(1.03);
+}
+
+/* Card overlay decorative gradient on hover */
+.category::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.03) 100%);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.category:hover::after{
+  opacity: 1;
+}
+
+/* ---------- Creator cards (with heart & items) ---------- */
+.category .heart{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 999px;
+  padding: 6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:38px;
+  height:38px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  transition: transform var(--transition);
+}
+.category .heart svg{ width:18px; height:18px; display:block; }
+
+/* if you want an inline emoji heart (we used earlier), style it */
+.category span{
+  padding-left: 12px;
+  font-weight:700;
+}
+
+/* ---------- Animated popular categories (colour animation) ---------- */
+@keyframes hueShift {
+  0% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(18deg); }
+  100% { filter: hue-rotate(0deg); }
+}
+
+/* Add a distinct class for popular categories (you can apply class="category popular" in HTML) */
+.category.popular img{
+  animation: hueShift 6s ease-in-out infinite;
+}
+.category.popular h3{
+  color: var(--accent-2);
+}
+
+/* ---------- Article / creator card text tweaks ---------- */
+.category hi, .category .caption {
+  display:block;
+  padding: 0 14px 12px;
+  color:var(--muted);
+  font-size: 14px;
+}
+
+/* ---------- Big image + text square container ---------- */
+.square-container{
+  width: min(100%, var(--max-width));
+  margin: 28px auto;
+  padding: 0 24px;
+}
+.content{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items:center;
+  background: linear-gradient(180deg, #ffffff, #fbfbfb);
+  padding: 18px;
+  border-radius: 14px;
+  box-shadow: var(--shadow-2);
+}
+.left-side img{
+  width:100%;
+  height:360px;
+  object-fit:cover;
+  border-radius: 10px;
+  display:block;
+  transition: transform var(--transition), opacity var(--transition);
+}
+.left-side img:hover{
+  transform: scale(1.02);
+  opacity: 0.98;
+}
+.right-side{
+  padding: 10px 18px;
+}
+.right-side h2{
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+.right-side p{
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+.learn-more-btn{
+  padding: 10px 14px;
+  background: transparent;
+  border: 1px solid var(--accent-2);
+  color: var(--accent-2);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 220ms ease;
+}
+.learn-more-btn:hover{
+  background: var(--accent-2);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+/* ---------- Home Rentals cards small tweaks ---------- */
+.category small{
+  display:block;
+  padding: 0 14px 14px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* ---------- Footer ---------- */
+.tripadvisor-footer{
+  background: #0f1720;
+  color: #e6eef0;
+  padding: 32px 0 40px;
+  margin-top: 22px;
+}
+.footer-container{
+  width: min(100%, var(--max-width));
+  margin: 0 auto;
+  display:flex;
+  gap: 24px;
+  justify-content:space-between;
+  padding: 0 24px;
+  flex-wrap:wrap;
+}
+.footer-section{
+  min-width: 180px;
+}
+.footer-section h3{
+  color:#fff;
+  margin-bottom:12px;
+  font-size:15px;
+}
+.footer-section ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.footer-section li{
+  color: #c6d1d6;
+  font-size:14px;
+  margin-bottom:8px;
+}
+.footer-bottom{
+  width: min(100%, var(--max-width));
+  margin: 20px auto 0;
+  padding: 12px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  color:#97a0a5;
+  font-size:14px;
+}
+
+/* bottom links styling */
+.footer-bottom-links{
+  list-style:none;
+  display:flex;
+  gap:12px;
+  margin:0;
+  padding:0;
+}
+.footer-bottom-links li{
+  cursor:pointer;
+}
+
+/* ---------- Small screens responsiveness ---------- */
+@media (max-width: 980px){
+  .categories{
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .where h1{
+    font-size: 36px;
+  }
+  .gatway__img{
+    height: 260px;
+  }
+  .content{ grid-template-columns: 1fr; }
+  .left-side img{ height: 240px; }
+}
+
+@media (max-width: 680px){
+  .header{
+    padding: 12px 16px;
+    gap:8px;
+  }
+  .header__1{ display:none; } /* collapse nav on very small screens */
+  .menu{ min-width: auto; gap:8px; }
+  .wher__down{ flex-direction: column; gap:12px; align-items:flex-start; padding: 0 16px 18px; }
+  .input input[type="text"]{ width: 100%; max-width: 100%; }
+  .categories{ grid-template-columns: 1fr; }
+  .sale-img__offer{ left: 18px; bottom: 18px; max-width: 90%; }
+  .where h1{ font-size: 28px; margin-left: 12px; }
+}
+
+/* ---------- Focus states (accessibility) ---------- */
+a:focus, button:focus, input:focus, .category:focus{
+  outline: 3px solid rgba(0,166,126,0.14);
+  outline-offset: 3px;
+}
+
+/* ---------- Tiny utility classes ---------- */
+.text-muted{ color:var(--muted); }
+.mb-8{ margin-bottom:8px; }
+.mb-12{ margin-bottom:12px; }
+.center{ text-align:center; }
+
+/* ---------- Optional: Fancy card reveal on load ---------- */
+@keyframes slideUpFade {
+  from{ transform: translateY(14px); opacity:0; }
+  to{ transform: translateY(0); opacity:1; }
+}
+.category{
+  will-change: transform, opacity;
+  animation: slideUpFade 420ms ease both;
+}
+
+/* ---------- Extra: "popular categories" floating glow and pointer animation ---------- */
+.popular{
+  position: relative;
+  overflow: visible;
+}
+.popular::before{
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 16px;
+  background: radial-gradient(600px 120px at 10% 20%, rgba(0,166,126,0.06), transparent 10%),
+              radial-gradient(400px 120px at 90% 80%, rgba(0,118,204,0.03), transparent 20%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 360ms ease;
+}
+.popular:hover::before{ opacity: 1; }
+
+/* ---------- Heart "like" micro-interaction (if you convert the emoji to icon) ---------- */
+@keyframes pop {
+  0% { transform: scale(0.9); }
+  50% { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+.heart-pop{
+  animation: pop 320ms ease;
+}
+
+/* ---------- Helper: visually hidden for accessibility ---------- */
+.visually-hidden{
+  position: absolute!important;
+  height:1px;width:1px;
+  overflow:hidden;
+  clip:rect(1px,1px,1px,1px);
+  white-space:nowrap;
+}
+
+/* ---------- End of stylesheet ---------- */
